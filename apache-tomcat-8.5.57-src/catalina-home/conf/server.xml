@@ -19,8 +19,13 @@
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
  -->
+<!--
+    注意:一个“服务器”本身不是一个“容器”，所以你不能在这个级别定义子组件，比如“阀门”。
+    文件在/ docs / config / server.html
+-->
 <Server port="8005" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+  <!-- Security listener 安全侦听器-->
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
   -->
@@ -66,9 +71,17 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
+    <!--“连接器” 表示接收请求的端点
+        并返回响应。
+
+        Connector中的参数
+        port Tomcat端口号，默认8080。
+        protocol 协议类型，可选类型有4种，BIO（阻塞型IO），NIO，NIO2和APR。
+
+    -->
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
-               redirectPort="8443" />
+               redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -118,6 +131,13 @@
                address="::1"
                port="8009"
                redirectPort="8443" />
+    -->
+
+    <!--
+        Engine
+          Realm
+          Host
+            value
     -->
 
     <!-- An Engine represents the entry point (within Catalina) that processes

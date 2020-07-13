@@ -80,6 +80,11 @@ package org.apache.catalina;
  *
  * @author Craig R. McClanahan
  */
+/*
+    组件生命周期方法的公共接口。为了提供启动和停止组件的一致机制，
+    Catalina组件可以实现这个接口(以及它们支持的功能的适当接口)。
+    支持生命周期的组件的有效状态转换是:
+ */
 public interface Lifecycle {
 
 

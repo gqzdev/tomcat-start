@@ -246,6 +246,7 @@ public final class Bootstrap {
      * Initialize daemon.
      * @throws Exception Fatal initialization error
      */
+    //初始化守护进程。
     public void init() throws Exception {
 
         initClassLoaders();
@@ -332,6 +333,7 @@ public final class Bootstrap {
 
 
     /**
+     * 启动Catalina守护进程。
      * Start the Catalina daemon.
      * @throws Exception Fatal start error
      */
@@ -434,11 +436,27 @@ public final class Bootstrap {
      *
      * @param args Command line arguments to be processed
      */
+    /**
+        1.初始化一个守护进程变量 daemon 、加载类和相应参数。
+        2.解析命令，并执行。
+     */
     public static void main(String args[]) {
+
+//        System.out.println("args参数");
+//        for (String arg : args) {
+//            System.out.println(arg);
+//        }
 
         synchronized (daemonLock) {
             if (daemon == null) {
                 // Don't set daemon until init() has completed
+                // 在init()完成之前，不要设置守护进程
+                /*
+                    catalinaDaemon = null
+                    commonLoader = null
+                    catalinaLoader = null
+                    sharedLoader = null
+                 */
                 Bootstrap bootstrap = new Bootstrap();
                 try {
                     bootstrap.init();
